@@ -21,14 +21,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  int _likes = 0;
+
+  void _incrementLikes() {
+    setState(() {
+      _likes++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Profile'),
+        title: const Text('67190561 - My Profile'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
@@ -45,7 +58,7 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                'Chalisa (chalisa1103)',
+                'Chalisa Naksaaing',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
@@ -68,6 +81,20 @@ class ProfilePage extends StatelessWidget {
                   leading: const Icon(Icons.school, color: Colors.deepPurple),
                   title: const Text('Walailak University'),
                 ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: _incrementLikes,
+                    icon: const Icon(Icons.favorite, color: Colors.red),
+                    label: Text(
+                      'Likes: $_likes',
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
